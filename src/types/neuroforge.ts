@@ -38,6 +38,40 @@ export interface OrchestrationMission {
   createdAt: string;
 }
 
+export interface DebateTurn {
+  id: string;
+  agentRole: AgentRole;
+  agentName: string;
+  stance: "PRO" | "CONTRA" | "CRITIQUE" | "VERDICT";
+  thesisTitle: string;
+  argument: string;
+  attackVectorOrProof?: string;
+  argumentScore: number;
+  tokensBurned: number;
+  timestamp: string;
+}
+
+export interface DebateTopic {
+  id: string;
+  title: string;
+  proposition: string;
+  category: string;
+  proAgent: AgentRole;
+  contraAgent: AgentRole;
+  arbiterAgent: AgentRole;
+}
+
+export interface DebateSession {
+  id: string;
+  topicId: string;
+  topicTitle: string;
+  status: "idle" | "debating" | "concluded";
+  turns: DebateTurn[];
+  winner?: AgentRole;
+  rulingSummary?: string;
+  totalTokens: number;
+}
+
 export interface RouterConfig {
   endpoint: string;
   model: string;
